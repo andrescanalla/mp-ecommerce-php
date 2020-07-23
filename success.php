@@ -3,7 +3,7 @@ $payment_type = $_GET['payment_type'];
 $external_reference = $_GET['external_reference'];
 $collection_id = $_GET['collection_id'];
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.mercadopago.com/v1/payments/:id?access_token=ACCESS_TOKEN_ENV");
+curl_setopt($ch, CURLOPT_URL, "https://api.mercadopago.com/v1/payments/".$collection_id."?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 curl_close($ch);
@@ -507,7 +507,7 @@ $jsonRes = json_decode($result);
                                             El pago haya sido exitoso!!!
                                         </h2>
                                         <h3>payment_type:<?php echo $payment_type ?></h3>
-                                        <h3>payment_method_id:<?php echo $jsonRes ?></h3>
+                                        <h3>payment_method_id:<?php echo $jsonRes->payment_method_id ?></h3>
                                         <h3>external_reference:<?php echo $external_reference ?></h3>
                                         <h3>collection_id:<?php echo $collection_id ?></h3>
                                     </button>
