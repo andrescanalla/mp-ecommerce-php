@@ -6,7 +6,7 @@ $eventJson = json_decode($input);
 
 // Usar los datos del Webhooks para alguna acción.
 //print $eventJson;
-error_log("JSON:".$eventJson, 0);
+echo("JSON:".$eventJson);
 
 // Responder
 http_response_code(200);
