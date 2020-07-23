@@ -507,7 +507,7 @@ $jsonRes = json_decode($result);
                                             El pago haya sido exitoso!!!
                                         </h2>
                                         <h3>payment_type:<?php echo $payment_type ?></h3>
-                                        <h3>payment_method_id:<?php echo $jsonRes->payment_method_id ?></h3>
+                                        <h3>payment_method_id:<?php echo $jsonRes ?></h3>
                                         <h3>external_reference:<?php echo $external_reference ?></h3>
                                         <h3>collection_id:<?php echo $collection_id ?></h3>
                                     </button>
