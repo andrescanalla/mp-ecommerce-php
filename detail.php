@@ -42,6 +42,7 @@ $preference->back_urls = array(
     "failure" => $url."/failure.php",
     "pending" => $url."/pending.php"
 );
+$preference->notification_url ='https://andrescanalla-mp-commerce-php.herokuapp.com/webhooks.php';
 $preference->auto_return = "approved";
 $preference->payment_methods = array(    
     "excluded_payment_types" => array(
