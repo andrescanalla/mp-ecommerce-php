@@ -18,6 +18,8 @@ $collection_id = $_GET['collection_id'];
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
+    <script src="https://www.mercadopago.com/v2/security.js" view=""></script>
+
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
     <link rel="stylesheet" href="./assets/category.css" media="screen, print">
@@ -494,7 +496,7 @@ $collection_id = $_GET['collection_id'];
                                         <h2 class=" as-filter-button-text">
                                             El pago haya sido exitoso!!!
                                         </h2>
-                                        <h3>payment_method_id:<?php echo $payment_method_id . 'm' . $payment_type ?></h3>
+                                        <h3>payment_method_id:<?php echo $payment_type ?></h3>
                                         <h3>external_reference:<?php echo $external_reference ?></h3>
                                         <h3>collection_id:<?php echo $collection_id ?></h3>
                                     </button>
