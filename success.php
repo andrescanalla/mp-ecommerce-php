@@ -1,5 +1,4 @@
 <?php
-$payment_method_id = $_GET['payment_method_id'];
 $payment_type = $_GET['payment_type'];
 $external_reference = $_GET['external_reference'];
 $collection_id = $_GET['collection_id'];
