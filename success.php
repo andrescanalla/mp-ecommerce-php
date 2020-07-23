@@ -1,5 +1,8 @@
 <?php
- $payment_method_id = $_GET['payment_method_id '];
+$payment_method_id = $_GET['payment_method_id'];
+$payment_type = $_GET['payment_type'];
+$external_reference = $_GET['external_reference'];
+$collection_id = $_GET['collection_id'];
 ?>
 
 <!DOCTYPE html>
@@ -492,11 +495,13 @@
                                         <h2 class=" as-filter-button-text">
                                             El pago haya sido exitoso!!!
                                         </h2>
+                                        <h3>payment_method_id:<?php echo $payment_method_id . 'm' . $payment_type ?></h3>
+                                        <h3>external_reference:<?php echo $external_reference ?></h3>
+                                        <h3>collection_id:<?php echo $collection_id ?></h3>
                                     </button>
-                                    <div>payment_method_id:<?php $payment_method_id ?></div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50">
                             <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle>
