@@ -14,7 +14,8 @@
     <meta name="format-detection" content="telephone=no">
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    s
+    
+    <script src="https://www.mercadopago.com/v2/security.js" view=""></script>
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
