@@ -8,7 +8,8 @@ $eventJson = json_decode($input, true);
 
 // Usar los datos del Webhooks para alguna acción.
 //print $eventJson;
-error_log($eventJson, 1);
+$json_pretty_string = json_encode($eventJson, JSON_PRETTY_PRINT);
+error_log('test' . PHP_EOL . $json_pretty_string);
 
 // Responder
 http_response_code(200);
