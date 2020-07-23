@@ -43,12 +43,12 @@ $preference->back_urls = array(
     "pending" => $url."/pending.php"
 );
 $preference->auto_return = "approved";
-$preference->payment_methods = array(
-    "excluded_payment_methods" => array(
-        array("id" => "amex​")
-    ),
+$preference->payment_methods = array(    
     "excluded_payment_types" => array(
         array("id" => "atm")
+    ),
+    "excluded_payment_methods" => array(
+        array("id" => "amex​")
     ),
     "installments" => 6
 );
