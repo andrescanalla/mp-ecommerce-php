@@ -5,6 +5,12 @@ $collection_id = $_GET['collection_id'];
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "https://api.mercadopago.com/v1/payments/".$collection_id."?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 $result = curl_exec($ch);
+if(!curl_errno($ch)){ 
+    $info = curl_getinfo($ch); 
+    echo 'Took ' . $info['total_time'] . ' seconds to send a request to ' . $info['url']; 
+  } else { 
+    echo 'Curl error: ' . curl_error($ch); 
+  } 
 curl_close($ch);
 
 
