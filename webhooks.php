@@ -5,7 +5,7 @@ $input = @file_get_contents("php://input");
 $eventJson = json_decode($input);
 
 // Usar los datos del Webhooks para alguna acción.
-print $eventJson;
+//print $eventJson;
 
 // Responder
 http_response_code(200);
