@@ -72,7 +72,7 @@ $response = curl_exec($curl);
 $as = json_decode($response);
 
 curl_close($curl);
-echo $as->init_point;
+
 
 
 ?>
@@ -621,7 +621,7 @@ echo $as->init_point;
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <form action="<?php echo $preference->init_point; ?>" method="POST">
+                                    <form action="<?php echo $as->init_point; ?>" method="POST">
                                         <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
                                     </form>
                                 </div>
