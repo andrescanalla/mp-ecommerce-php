@@ -43,12 +43,8 @@ $preference->back_urls = array(
     "pending" => $url."/pending.php"
 );
 $preference->notification_url ='https://andrescanalla-mp-commerce-php.herokuapp.com/webhooks.php';
+$preference->payment_methods = array("excluded_payment_methods"=>[["id"=>"amex​"]],"excluded_payment_types"=>array(array("id" =>"atm")),"installments" => 6);
 $preference->auto_return = "approved";
-$preference->payment_methods = array(
-    "excluded_payment_methods"=>[["id"=>"amex​"]],
-    "excluded_payment_types"=>array(array("id" =>"atm")),    
-    "installments" => 6
-);
 $preference->save();
 
 $curl = curl_init();
@@ -621,7 +617,7 @@ curl_close($curl);
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <form action="<?php echo $as->init_point; ?>" method="POST">
+                                    <form action="<?php echo $preference->init_point; ?>" method="POST">
                                         <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
                                     </form>
                                 </div>
