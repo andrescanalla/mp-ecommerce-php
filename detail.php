@@ -43,12 +43,9 @@ $preference->back_urls = array(
     "pending" => $url."/pending.php"
 );
 $preference->notification_url ='https://andrescanalla-mp-commerce-php.herokuapp.com/webhooks.php';
-$preference->payment_methods = array("excluded_payment_methods"=>[["id"=>"amex​"]],"excluded_payment_types"=>array(array("id" =>"atm")),"installments" => 6);
 $preference->auto_return = "approved";
 $preference->save();
 
-$preference->payment_methods = array("excluded_payment_methods"=>[["id"=>"amex​"]],"excluded_payment_types"=>array(array("id" =>"atm")),"installments" => 6);
-$preference->update();
 ?>
 
 <!DOCTYPE html>
