@@ -51,68 +51,28 @@ $preference->payment_methods = array(
 );
 $preference->save();
 
-$client = new http\Client;
-$request = new http\Client\Request;
-$request->setRequestUrl('https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
-$request->setRequestMethod('POST');
-$body = new http\Message\Body;
-$body->append('{          
-    "items": [
-        {
-            "id": "1234",
-            "category_id": "",
-            "currency_id": "ARS",
-            "description": "Dispositivo móvil de Tienda e-commerce",
-            "picture_url": "https://andrescanalla-mp-commerce-php.herokuapp.com/assets/u_10168742.jpg",
-            "title": "iPhone 8",
-            "quantity": 1,
-            "unit_price": 16000
-        }
-    ],    
-    "payer": {
-        "phone": {
-            "area_code": "11",
-            "number": "22223333"
-        },
-        "address": {
-            "zip_code": "1111",
-            "street_name": "False",
-            "street_number": "123"
-        },
-        "email": "test_user_63274575@testuser.com",        
-        "name": "Lalo",
-        "surname": "Landa"        
-    },
-    "back_urls": {
-        "failure": "https://andrescanalla-mp-commerce-php.herokuapp.com/failure.php",
-        "pending": "https://andrescanalla-mp-commerce-php.herokuapp.com/pending.php",
-        "success": "https://andrescanalla-mp-commerce-php.herokuapp.com/success.php"
-    },  
-    "auto_return": "approved",
-    "payment_methods": {
-        "excluded_payment_methods": [
-            {
-                "id": "amex"
-            }
-        ],
-        "excluded_payment_types": [
-            {
-                "id": "atm"
-            }
-        ],
-        "installments": 6
-    },
-    "notification_url": "https://andrescanalla-mp-commerce-php.herokuapp.com/webhooks.php",
-    "external_reference": "pasquinelli@a-w-a.com.ar"
-}');
-$request->setBody($body);
-$request->setOptions(array());
-$request->setHeaders(array(
-  'Content-Type' => 'text/plain'
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS =>"{          \r\n    \"items\": [\r\n        {\r\n            \"id\": \"1234\",\r\n            \"category_id\": \"\",\r\n            \"currency_id\": \"ARS\",\r\n            \"description\": \"Dispositivo móvil de Tienda e-commerce\",\r\n            \"picture_url\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/assets/u_10168742.jpg\",\r\n            \"title\": \"iPhone 8\",\r\n            \"quantity\": 1,\r\n            \"unit_price\": 16000\r\n        }\r\n    ],    \r\n    \"payer\": {\r\n        \"phone\": {\r\n            \"area_code\": \"11\",\r\n            \"number\": \"22223333\"\r\n        },\r\n        \"address\": {\r\n            \"zip_code\": \"1111\",\r\n            \"street_name\": \"False\",\r\n            \"street_number\": \"123\"\r\n        },\r\n        \"email\": \"test_user_63274575@testuser.com\",        \r\n        \"name\": \"Lalo\",\r\n        \"surname\": \"Landa\"        \r\n    },\r\n    \"back_urls\": {\r\n        \"failure\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/failure.php\",\r\n        \"pending\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/pending.php\",\r\n        \"success\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/success.php\"\r\n    },  \r\n    \"auto_return\": \"approved\",\r\n    \"payment_methods\": {\r\n        \"excluded_payment_methods\": [\r\n            {\r\n                \"id\": \"amex\"\r\n            }\r\n        ],\r\n        \"excluded_payment_types\": [\r\n            {\r\n                \"id\": \"atm\"\r\n            }\r\n        ],\r\n        \"installments\": 6\r\n    },\r\n    \"notification_url\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/webhooks.php\",\r\n    \"external_reference\": \"pasquinelli@a-w-a.com.ar\"\r\n}",
+  CURLOPT_HTTPHEADER => array(
+    "Content-Type: text/plain"
+  ),
 ));
-$client->enqueue($request)->send();
-$response = $client->getResponse();
-echo $response->getBody();
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
 
 ?>
 
