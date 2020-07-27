@@ -47,30 +47,8 @@ $preference->payment_methods = array("excluded_payment_methods"=>[["id"=>"amex�
 $preference->auto_return = "approved";
 $preference->save();
 
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS =>"{          \r\n    \"items\": [\r\n        {\r\n            \"id\": \"1234\",\r\n                        \"description\": \"Dispositivo móvil de Tienda e-commerce\",\r\n            \"picture_url\": ".$url.substr($_POST['img'],1).",\r\n            \"title\": ".$_POST['title'].",\r\n            \"quantity\": 1,\r\n            \"unit_price\": ".$_POST['price']."\r\n        }\r\n    ],    \r\n    \"payer\": {\r\n        \"phone\": {\r\n            \"area_code\": \"11\",\r\n            \"number\": \"22223333\"\r\n        },\r\n        \"address\": {\r\n            \"zip_code\": \"1111\",\r\n            \"street_name\": \"False\",\r\n            \"street_number\": \"123\"\r\n        },\r\n        \"email\": \"test_user_63274575@testuser.com\",        \r\n        \"name\": \"Lalo\",\r\n        \"surname\": \"Landa\"        \r\n    },\r\n    \"back_urls\": {\r\n        \"failure\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/failure.php\",\r\n        \"pending\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/pending.php\",\r\n        \"success\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/success.php\"\r\n    },  \r\n    \"auto_return\": \"approved\",\r\n    \"payment_methods\": {\r\n        \"excluded_payment_methods\": [\r\n            {\r\n                \"id\": \"amex\"\r\n            }\r\n        ],\r\n        \"excluded_payment_types\": [\r\n            {\r\n                \"id\": \"atm\"\r\n            }\r\n        ],\r\n        \"installments\": 6\r\n    },\r\n    \"notification_url\": \"https://andrescanalla-mp-commerce-php.herokuapp.com/webhooks.php\",\r\n    \"external_reference\": \"pasquinelli@a-w-a.com.ar\"\r\n}",
-  CURLOPT_HTTPHEADER => array(
-    "Content-Type: text/plain"
-  ),
-));
-
-$response = curl_exec($curl);
-$as = json_decode($response);
-
-curl_close($curl);
-
-
-
+$preference->payment_methods = array("excluded_payment_methods"=>[["id"=>"amex​"]],"excluded_payment_types"=>array(array("id" =>"atm")),"installments" => 6);
+$preference->update();
 ?>
 
 <!DOCTYPE html>
@@ -617,7 +595,7 @@ curl_close($curl);
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <form action="<?php echo $as->init_point; ?>" method="POST">
+                                    <form action="<?php echo $preference->init_point; ?>" method="POST">
                                         <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
                                     </form>
                                 </div>
