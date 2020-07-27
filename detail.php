@@ -50,6 +50,70 @@ $preference->payment_methods = array(
     "installments" => 6
 );
 $preference->save();
+
+$client = new http\Client;
+$request = new http\Client\Request;
+$request->setRequestUrl('https://api.mercadopago.com/checkout/preferences?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+$request->setRequestMethod('POST');
+$body = new http\Message\Body;
+$body->append('{          
+    "items": [
+        {
+            "id": "1234",
+            "category_id": "",
+            "currency_id": "ARS",
+            "description": "Dispositivo móvil de Tienda e-commerce",
+            "picture_url": "https://andrescanalla-mp-commerce-php.herokuapp.com/assets/u_10168742.jpg",
+            "title": "iPhone 8",
+            "quantity": 1,
+            "unit_price": 16000
+        }
+    ],    
+    "payer": {
+        "phone": {
+            "area_code": "11",
+            "number": "22223333"
+        },
+        "address": {
+            "zip_code": "1111",
+            "street_name": "False",
+            "street_number": "123"
+        },
+        "email": "test_user_63274575@testuser.com",        
+        "name": "Lalo",
+        "surname": "Landa"        
+    },
+    "back_urls": {
+        "failure": "https://andrescanalla-mp-commerce-php.herokuapp.com/failure.php",
+        "pending": "https://andrescanalla-mp-commerce-php.herokuapp.com/pending.php",
+        "success": "https://andrescanalla-mp-commerce-php.herokuapp.com/success.php"
+    },  
+    "auto_return": "approved",
+    "payment_methods": {
+        "excluded_payment_methods": [
+            {
+                "id": "amex"
+            }
+        ],
+        "excluded_payment_types": [
+            {
+                "id": "atm"
+            }
+        ],
+        "installments": 6
+    },
+    "notification_url": "https://andrescanalla-mp-commerce-php.herokuapp.com/webhooks.php",
+    "external_reference": "pasquinelli@a-w-a.com.ar"
+}');
+$request->setBody($body);
+$request->setOptions(array());
+$request->setHeaders(array(
+  'Content-Type' => 'text/plain'
+));
+$client->enqueue($request)->send();
+$response = $client->getResponse();
+echo $response->getBody();
+
 ?>
 
 <!DOCTYPE html>
